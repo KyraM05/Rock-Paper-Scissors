@@ -11,6 +11,7 @@ var timeBetweenHits = 300;
 var timeSinceHit = 0;
 var activeGame = true;
 var defaultFont = new font.Font("40px Arial");
+var timer = 20;
 
 function Player(placement, formIndex){
   this.placement = placement;
@@ -163,6 +164,8 @@ function main() {
   };
 
   function gameTick(msDuration) {
+	timer = timer - (msDuration/1000);
+	timer = timer%60;
     if(activeGame){
       gamejs.event.get().forEach(function(event) {
         handleEvent(event);
@@ -178,13 +181,15 @@ function main() {
       };
       player1.update(msDuration);
       player2.update(msDuration);
-      display.blit(defaultFont.render("ROCK PAPER SCISSORS", "#000000"), [300, 0]);
-      display.blit(defaultFont.render("Player 1: ", "#000000"), [0, 240]);
-      display.blit(defaultFont.render(player1.health, "#000000"), [170, 240]);
-      display.blit(defaultFont.render("Controls: W A S D", "#000000"), [0, 280]);
-      display.blit(defaultFont.render("Player 2: ", "#000000"), [600, 240]);
-      display.blit(defaultFont.render(player2.health, "#000000"), [770, 240]);
-      display.blit(defaultFont.render("Controls: \u2191 \u2193 \u2190 \u2192", "#000000"), [600, 280]);
+	  display.blit(defaultFont.render("Timer:", "#000000"), [100, 330]);
+	  display.blit(defaultFont.render(timer, "#000000"), [220, 330]);
+      display.blit(defaultFont.render("ROCK PAPER SCISSORS", "#000000"), [400, 0]);
+      display.blit(defaultFont.render("Player 1: ", "#000000"), [100, 240]);
+      display.blit(defaultFont.render(player1.health, "#000000"), [270, 240]);
+      display.blit(defaultFont.render("Controls: W A S D", "#000000"), [100, 280]);
+      display.blit(defaultFont.render("Player 2: ", "#000000"), [700, 240]);
+      display.blit(defaultFont.render(player2.health, "#000000"), [870, 240]);
+      display.blit(defaultFont.render("Controls: \u2191 \u2193 \u2190 \u2192", "#000000"), [700, 280]);
       player1.draw(display);
       player2.draw(display);
       if(player1.health === 0 || player2.health === 0){
