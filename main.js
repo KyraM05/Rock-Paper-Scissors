@@ -165,7 +165,7 @@ function main() {
 
   function gameTick(msDuration) {
 	timer = timer - (msDuration/1000);
-	timer = timer%60;
+	timer = timer % 60;
 	timer = Math.round(timer * 100) / 100;
     if(activeGame){
       gamejs.event.get().forEach(function(event) {
@@ -198,23 +198,32 @@ function main() {
       player2.draw(display);
       if(player1.health === 0 || player2.health === 0){
         activeGame = false;
-        if (player1.health === 0){
-          display.blit(defaultFont.render("Player 1 Defeated", "#000000"), [100, 400]);
+		if (player1.health === 0 && player2.health === 0) {
+		  display.blit(defaultFont.render("It's a tie!", "#4682B4"), [500, 400]);
+		}
+        else if (player1.health === 0){
+          display.blit(defaultFont.render("Player 1 Defeated", "#FF0000"), [100, 400]);
+		  display.blit(defaultFont.render("Player 2 Wins!", "#008000"), [700, 400]);
         }
-        if (player2.health === 0){
-          display.blit(defaultFont.render("Player 2 Defeated", "#000000"), [600, 400]);
-        }
+        else if (player2.health === 0){
+          display.blit(defaultFont.render("Player 2 Defeated", "#FF0000"), [700, 400]);
+		  display.blit(defaultFont.render("Player 1 Wins!", "#008000"), [100, 400]);
+        } 
       };
 	  if (timer <= 0){
 		  activeGame = false;
 		  if(player1.health < player2.health){
-			   display.blit(defaultFont.render("Player 1 Defeated", "#000000"), [100, 400]);
+			   display.blit(defaultFont.render("Player 1 Defeated", "#FF0000"), [100, 400]);
+			   display.blit(defaultFont.render("Player 2 Wins!", "#008000"), [700, 400]);
 		  }
 		  else if(player2.health < player1.health){
-			  display.blit(defaultFont.render("Player 2 Defeated", "#000000"), [600, 400]);
+			  display.blit(defaultFont.render("Player 2 Defeated", "#FF0000"), [700, 400]);
+			  display.blit(defaultFont.render("Player 1 Wins!", "#008000"), [100, 400]);
+			  display.blit(defaultFont.render("Player 2 Defeated", "#000000"), [700, 400]);
+
 		  }
 		  else if(player1.health === player2.health){
-			  display.blit(defaultFont.render("It's a tie", "#000000"), [500, 400]);
+			  display.blit(defaultFont.render("It's a tie!", "#4682B4"), [500, 400]);
 		  }
 	  };
     };
