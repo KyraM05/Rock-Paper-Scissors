@@ -166,6 +166,7 @@ function main() {
   function gameTick(msDuration) {
 	timer = timer - (msDuration/1000);
 	timer = timer%60;
+	timer = Math.round(timer * 100) / 100;
     if(activeGame){
       gamejs.event.get().forEach(function(event) {
         handleEvent(event);
@@ -195,7 +196,7 @@ function main() {
       if(player1.health === 0 || player2.health === 0){
         activeGame = false;
         if (player1.health === 0){
-          display.blit(defaultFont.render("Player 1 Defeated", "#000000"), [0, 400]);
+          display.blit(defaultFont.render("Player 1 Defeated", "#000000"), [100, 400]);
         }
         if (player2.health === 0){
           display.blit(defaultFont.render("Player 2 Defeated", "#000000"), [600, 400]);
