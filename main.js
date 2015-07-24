@@ -12,9 +12,6 @@ var timeSinceHit = 0;
 var activeGame = true;
 var defaultFont = new font.Font("40px Arial");
 var timer = 20;
-var canvas1 = document.getElementById('progress bar');
-var player1bar = canvas1.getContext('2d');
-var health;
 
 function Player(placement, formIndex){
   this.placement = placement;
