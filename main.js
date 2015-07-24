@@ -12,6 +12,9 @@ var timeSinceHit = 0;
 var activeGame = true;
 var defaultFont = new font.Font("40px Arial");
 var timer = 20;
+var canvas1 = document.getElementById('progress bar');
+var player1bar = canvas1.getContext('2d');
+var health;
 
 function Player(placement, formIndex){
   this.placement = placement;
@@ -214,8 +217,12 @@ function main() {
 			   display.blit(defaultFont.render("Player 2 Wins!", "#008000"), [700, 400]);
 		  }
 		  else if(player2.health < player1.health){
+<<<<<<< HEAD
 			  display.blit(defaultFont.render("Player 2 Defeated", "#FF0000"), [700, 400]);
 			  display.blit(defaultFont.render("Player 1 Wins!", "#008000"), [100, 400]);
+=======
+			  display.blit(defaultFont.render("Player 2 Defeated", "#000000"), [700, 400]);
+>>>>>>> 6fa89f5d4fc4877a47a85126b519cdbbca010ae7
 		  }
 		  else if(player1.health === player2.health){
 			  display.blit(defaultFont.render("It's a tie!", "#4682B4"), [500, 400]);
