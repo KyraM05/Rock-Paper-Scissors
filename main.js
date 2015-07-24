@@ -180,11 +180,14 @@ function main() {
       }else{
         timeSinceHit +=msDuration;
       };
+	  
       player1.update(msDuration);
       player2.update(msDuration);
 	  display.blit(defaultFont.render("Timer:", "#000000"), [100, 330]);
 	  display.blit(defaultFont.render(timer, "#000000"), [220, 330]);
-      display.blit(defaultFont.render("ROCK PAPER SCISSORS", "#000000"), [400, 0]);
+      display.blit(defaultFont.render("ROCK", "#333333"), [400, 0]);
+	  display.blit(defaultFont.render(" PAPER", "#CCFFCC"), [520, 0]);
+	  display.blit(defaultFont.render(" SCISSORS", "#CCCC99"), [670, 0]);
       display.blit(defaultFont.render("Player 1: ", "#000000"), [100, 240]);
       display.blit(defaultFont.render(player1.health, "#000000"), [270, 240]);
       display.blit(defaultFont.render("Controls: W A S D", "#000000"), [100, 280]);
@@ -216,6 +219,9 @@ function main() {
 	  };
     };
   };
+
+
+
   var player1 = new Player(0, 3);
   var player2 = new Player(1000, 3);
   gamejs.time.fpsCallback(gameTick, this, 60);
