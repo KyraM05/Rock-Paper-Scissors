@@ -195,12 +195,24 @@ function main() {
       if(player1.health === 0 || player2.health === 0){
         activeGame = false;
         if (player1.health === 0){
-          display.blit(defaultFont.render("Player 1 Defeated", "#000000"), [0, 320]);
+          display.blit(defaultFont.render("Player 1 Defeated", "#000000"), [0, 400]);
         }
         if (player2.health === 0){
-          display.blit(defaultFont.render("Player 2 Defeated", "#000000"), [600, 320]);
+          display.blit(defaultFont.render("Player 2 Defeated", "#000000"), [600, 400]);
         }
       };
+	  if (timer <= 0){
+		  activeGame = false;
+		  if(player1.health < player2.health){
+			   display.blit(defaultFont.render("Player 1 Defeated", "#000000"), [100, 400]);
+		  }
+		  else if(player2.health < player1.health){
+			  display.blit(defaultFont.render("Player 2 Defeated", "#000000"), [600, 400]);
+		  }
+		  else if(player1.health === player2.health){
+			  display.blit(defaultFont.render("It's a tie", "#000000"), [500, 400]);
+		  }
+	  };
     };
   };
   var player1 = new Player(0, 3);
